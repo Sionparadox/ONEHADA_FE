@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline for Frontend
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out code
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
@@ -26,8 +26,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          # 프론트엔드 이미지를 빌드하고 푸시
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.sha }} ./frontend
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.sha }} .
           docker push ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.sha }}
           docker push ${{ secrets.DOCKER_USERNAME }}/frontend:latest
 
@@ -37,7 +36,7 @@ jobs:
     needs: build  # build 작업이 완료된 후에 실행됨
 
     steps:
-      - name: Check out code
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up SSH
@@ -50,6 +49,6 @@ jobs:
           script: |
             # 서버에서 Docker Compose로 이미지를 Pull하고 배포
             cd /srv/docker/
-            docker-compose pull frontend  # 프론트엔드만 풀
-            docker-compose up -d frontend  # 프론트엔드만 실행
+            docker-compose pull frontend
+            docker-compose up -d frontend
 
