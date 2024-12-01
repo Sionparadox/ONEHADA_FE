@@ -35,6 +35,7 @@ jobs:
       # 4. npm으로 빌드 (테스트 생략)
       - name: Install dependencies and build
         run: |
+          cd one-hada
           npm install
           npm run build  # 빌드 커맨드 (예: React, Vue 등)
 
