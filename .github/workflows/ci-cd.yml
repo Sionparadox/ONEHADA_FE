@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # 사용하고자 하는 Node.js 버전 (프론트엔드 빌드에 맞게 조정)
+          node-version: '20' # 사용하고자 하는 Node.js 버전 (프론트엔드 빌드에 맞게 조정)
 
       # 3. 의존성 캐시 설정
       - name: Cache Node.js dependencies

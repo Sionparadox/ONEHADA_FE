@@ -1,5 +1,5 @@
 # Node.js 이미지 기반으로 설정
-FROM node:18-alpine
+FROM node:20-alpine
 
 # 컨테이너 내 작업 디렉토리 생성
 WORKDIR /app
